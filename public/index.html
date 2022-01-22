@@ -8,21 +8,40 @@
     <p>{{ foo }}</p>
     <!-- これは `foo` を更新しなくなります! -->
     <button v-on:click="foo = 'baz'">Change it</button>
+    <form>
+      <label for="id-checkbox">Checkbox:</label>
+      <input type="checkbox" v-on:click.prevent="onclock"/>
+    </form>
+
   </div>
-
-
-
 <script>
-var obj = {
-  foo: 'bar'
-}
+
 app=new Vue({
   el: '#app',
-  data: obj
-})
+  data: {
+    foo: 'bar',
+    a:"this is pen"
+  },
+  created: function () {
+    console.log('created: ' + this.a)
+  },
+  mounted: function () {
+    console.log('mounted: ' + this.a)
+  },
+  updated: function () {
+    console.log('updated: ' + this.a)
+  },
+  destroyed : function () {
+    console.log('destroyed: ' + this.a)
 
-console.log(app.foo) 
-console.log(app.$data) 
+  },
+  methods: {
+    onclock:function(){
+      console.log("onclock")
+    }
+  }
+
+})
 
 </script>
     
